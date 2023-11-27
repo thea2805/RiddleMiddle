@@ -2,6 +2,12 @@ package com.example.riddlemiddle.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+// Our Colorscheme:
+val DarkBlue = Color(0xFF091B4C)
+val Turquoise = Color(0xFF86CCC8)
+val Pink = Color(0xFFEA86A4)
+val BlueBackground = Color(0xFF1B3474)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

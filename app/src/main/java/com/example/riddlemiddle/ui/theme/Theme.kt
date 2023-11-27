@@ -15,10 +15,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+// Changing the colorscheme to match chosen colors from design
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DarkBlue,
+    secondary = Turquoise,
+    tertiary = Pink,
+    background = BlueBackground
 )
 
 private val LightColorScheme = lightColorScheme(
