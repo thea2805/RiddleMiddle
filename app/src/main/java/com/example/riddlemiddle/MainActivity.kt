@@ -5,14 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
+
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
+
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -59,6 +60,26 @@ fun StartScreen(){
                 .padding(5.dp)
                 .fillMaxSize()
                 .padding(bottom = 25.dp))
+        Row (modifier = Modifier
+            .align(Alignment.TopCenter)
+            .padding(top = 50.dp))
+        {
+            Text(text = "R",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.secondary)
+            Text(text = "i",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.tertiary)
+            Text(text = "ddle M",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.secondary)
+            Text(text = "i",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.tertiary)
+            Text(text = "ddle",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.secondary)
+        }
 
         Button(modifier = Modifier
             .align(Alignment.TopCenter)
@@ -76,18 +97,10 @@ fun StartScreen(){
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    RiddleMiddleTheme {
-        Greeting("Android")
+fun StartScreenPreview() {
+    RiddleMiddleTheme(darkTheme = true) {
+        StartScreen()
     }
 }
