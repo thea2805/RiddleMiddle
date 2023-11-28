@@ -36,13 +36,27 @@ fun RiddleBox(type: String, headline: String, text: String){
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.tertiary)
-        Text(text = type,
-            Modifier.padding(horizontal = 7.dp),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.tertiary)
-        Text(text = text,
-            Modifier.padding(horizontal = 7.dp),
-            color = Color.White)
+
+        if(type == "Riddle"){
+            Text(text = "Can you solve the riddle?",
+                Modifier.padding(horizontal = 7.dp),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.tertiary)
+            Text(text = text,
+                Modifier.padding(horizontal = 7.dp),
+                color = Color.White)
+        }
+        else {
+            Text(text = "Explanation: ",
+                Modifier.padding(horizontal = 7.dp),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.tertiary)
+            Text(text = text,
+                Modifier.padding(horizontal = 7.dp),
+                color = Color.White)
+        }
+
+
     }
 }
 

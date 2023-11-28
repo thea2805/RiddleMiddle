@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.riddlemiddle.riddlemiddleapp.riddletools.RiddleBox
 import com.example.riddlemiddle.ui.theme.RiddleMiddleTheme
 
-class ActiveRiddleActivity : ComponentActivity() {
+class RiddleAnswerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent{
@@ -28,21 +28,21 @@ class ActiveRiddleActivity : ComponentActivity() {
 
 
 @Composable
-fun ActiveRiddle() {
-     Column {
-         RiddleBox(type = "Riddle", headline = "The Three Gods", text = "Riddle Text")
-         Button(modifier = Modifier
-             .align(Alignment.CenterHorizontally),
-             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-             onClick = { /*TODO*/ }) {
+fun RiddleAnswer() {
+    Column {
+        RiddleBox(type = "Explanation", headline = "The Three Gods", text = "Riddle Answer")
+        Button(modifier = Modifier
+            .align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+            onClick = { /*TODO*/ }) {
 
-             Text(text = "Answer?",
-                 textAlign = TextAlign.Center,
-                 style = MaterialTheme.typography.headlineMedium,
-                 color = Color.Black
-             )
-         }
-     }
+            Text(text = "New Riddle?",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.Black
+            )
+        }
+    }
 
 }
 
@@ -54,8 +54,8 @@ fun ActiveRiddle() {
 
 @Preview(showBackground = true)
 @Composable
-fun ActiveRiddlePreview() {
+fun RiddleAnswerPreview() {
     RiddleMiddleTheme(darkTheme = true) {
-        ActiveRiddle()
+        RiddleAnswer()
     }
 }
