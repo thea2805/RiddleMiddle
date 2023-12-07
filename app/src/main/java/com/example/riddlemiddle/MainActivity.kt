@@ -1,14 +1,17 @@
 package com.example.riddlemiddle
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 
 import androidx.compose.material3.Button
 
@@ -25,6 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.riddlemiddle.comp.listTest
+import com.example.riddlemiddle.comp.testComItem
 import com.example.riddlemiddle.ui.theme.RiddleMiddleTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,8 +43,19 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.primary
                 ) {
                     //Greeting("Android")
-                    StartScreen()
+                    //StartScreen()
+                    testliste()
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun testliste() {
+    Column {
+        listTest.forEach { listItem ->
+            testComItem(basicCom = listItem) {
             }
         }
     }
@@ -47,38 +63,51 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun StartScreen(){
+fun StartScreen() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
 
-    ){
+    ) {
         Image(
             painter = painterResource(id = R.drawable.tophat),
             contentDescription = "background tophat image",
             modifier = Modifier
                 .padding(5.dp)
                 .fillMaxSize()
-                .padding(bottom = 25.dp))
-        Row (modifier = Modifier
-            .align(Alignment.TopCenter)
-            .padding(top = 50.dp))
+                .padding(bottom = 25.dp)
+        )
+        Row(
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 50.dp)
+        )
         {
-            Text(text = "R",
+            Text(
+                text = "R",
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.secondary)
-            Text(text = "i",
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Text(
+                text = "i",
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.tertiary)
-            Text(text = "ddle M",
+                color = MaterialTheme.colorScheme.tertiary
+            )
+            Text(
+                text = "ddle M",
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.secondary)
-            Text(text = "i",
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Text(
+                text = "i",
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.tertiary)
-            Text(text = "ddle",
+                color = MaterialTheme.colorScheme.tertiary
+            )
+            Text(
+                text = "ddle",
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.secondary)
+                color = MaterialTheme.colorScheme.secondary
+            )
         }
 
         Button(modifier = Modifier
@@ -87,7 +116,8 @@ fun StartScreen(){
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
             onClick = { /*TODO*/ }) {
 
-            Text(text = "Daily Riddle",
+            Text(
+                text = "Daily Riddle",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color.Black
