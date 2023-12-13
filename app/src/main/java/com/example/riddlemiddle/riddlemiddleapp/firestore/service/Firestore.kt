@@ -52,20 +52,11 @@ class Firestore(private val api: FirebaseFirestore, private val auth: FirebaseAu
         }
     }
 
-    suspend fun createUser(email: String, password: String){
+    public fun addUserToFirebase(email: String, password: String) {
         val user = hashMapOf("Email" to email, "Password" to password)
-        suspendCoroutine { continuation ->
-            api.collection("users")
-                .add(user)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    continuation.resume(documentReference.id)
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                    throw e
-                }
-        }
+        val uid = auth.currentUser!!.uid
+        api.collection("users").document(uid).set(user)
+        Log.d(TAG, "userID: $uid, added to database?")
     }
 
     suspend fun createShortRiddle(title: String, riddle: String, answer: String){
@@ -107,6 +98,49 @@ class Firestore(private val api: FirebaseFirestore, private val auth: FirebaseAu
         }
     }
 
+    suspend fun getUserRiddles(): List<Riddle> {
+        return suspendCoroutine { continuation ->
+            val uid = auth.currentUser!!.uid
 
+            api.collection("users").document(uid).collection("completedRiddles")
+                .get()
+                .addOnSuccessListener {
+                    val completedRiddles =
+                        it.documents.map { d ->
+                            Riddle(
+                                d.id,
+                                d.data?.get("Title").toString(),
+                                d.data?.get("Riddle").toString(),
+                                d.data?.get("Answer").toString()
+                            )
+                        }
+                    continuation.resume(completedRiddles)
+                }.addOnFailureListener {
+                    Log.v(TAG, "We failed $it")
+                    throw it
+                }
+        }
+    }
+
+    suspend fun addCompletedRiddle(title: String, riddle: String, answer: String){
+        val completedRiddle = hashMapOf(
+            "Title" to title,
+            "Riddle" to riddle,
+            "Answer" to answer)
+        val uid = auth.currentUser!!.uid
+
+        suspendCoroutine { continuation ->
+            api.collection("users").document(uid).collection("completedRiddles")
+                .add(completedRiddle)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    continuation.resume(documentReference.id)
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding document", e)
+                    throw e
+                }
+        }
+    }
 
 }

@@ -1,5 +1,4 @@
 package com.example.riddlemiddle.riddlemiddleapp.login
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -104,8 +103,10 @@ fun LoginForm(service: Firestore, nav: NavController) {
                 }
                 Button(onClick = {
                     scope.launch {
-                        val user = service.signup(email.value,password.value)
-                        service.createUser(email.value, password.value)
+                        service.signup(email.value,password.value)
+                        service.login(email.value, password.value)
+                        service.addUserToFirebase(email.value, password.value)
+                        nav.navigate("StartScreen")
                 }},
                     modifier = Modifier.width(150.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
