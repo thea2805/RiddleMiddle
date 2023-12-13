@@ -25,6 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -32,12 +35,19 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.riddlemiddle.ui.theme.RiddleMiddleTheme
+import androidx.navigation.NavController
+import com.example.riddlemiddle.riddlemiddleapp.firestore.service.Firestore
+import kotlinx.coroutines.launch
 
 @Composable
-fun LoginForm() {
+fun LoginForm(service: Firestore, nav: NavController) {
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val scope = rememberCoroutineScope()
+
+
+
     Surface(color = MaterialTheme.colorScheme.primary){
         Box(){
             Row (modifier = Modifier
@@ -71,23 +81,32 @@ fun LoginForm() {
             {
                 Spacer(modifier = Modifier.height(50.dp))
                 LoginField(
-                    value = "user@email.com",
-                    onChange = { },
+                    value = email.value,
+                    onChange = { newText -> email.value = newText },
                     modifier = Modifier.fillMaxWidth())
 
                 PasswordField(
-                    value = "********",
-                    onChange = { },
+                    value = password.value,
+                    onChange = {newText -> password.value = newText },
                     modifier = Modifier.fillMaxWidth() )
 
                 Spacer(modifier = Modifier.height(50.dp))
 
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = {
+                    scope.launch {
+                        service.login(email.value, password.value)
+                        nav.navigate("StartScreen")
+                    }
+                },
                     modifier = Modifier.width(150.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
                     Text(text = "Login")
                 }
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = {
+                    scope.launch {
+                        val user = service.signup(email.value,password.value)
+                        service.createUser(email.value, password.value)
+                }},
                     modifier = Modifier.width(150.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
                     Text(text = "Sign up")
@@ -193,10 +212,11 @@ fun submit() {
 }
 
 
+/*
 @Preview
 @Composable
 fun LoginPreview(){
     RiddleMiddleTheme(darkTheme = true) {
         LoginForm()
     }
-}
+}*/

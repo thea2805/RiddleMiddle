@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340918137602",
+    "project_id": "riddlemiddle-b6a08",
+    "storage_bucket": "riddlemiddle-b6a08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340918137602:android:67dc7ebc81095df11a481b",
+        "android_client_info": {
+          "package_name": "com.example.riddlemiddle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4P7YGepv_L9iYPKRBq83rnYrxbciIiqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
