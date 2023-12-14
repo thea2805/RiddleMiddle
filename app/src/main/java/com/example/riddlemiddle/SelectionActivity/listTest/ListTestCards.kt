@@ -34,12 +34,34 @@ import androidx.compose.ui.unit.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.*
+import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.riddlemiddle.R
+import com.example.riddlemiddle.navTest.NavigationBarMediumTheme
+
+
+
+@Composable
+fun ListTestCardScreen(navController: NavController) {
+    var modifier: Modifier = Modifier
+    NavigationBarMediumTheme {
+        var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
+
+        Surface(modifier, color = MaterialTheme.colorScheme.background) {
+            if (shouldShowOnboarding) {
+                OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+            } else {
+                Greetings()
+            }
+        }
+
+    }
+}
+
 
 
 @Preview
@@ -76,7 +98,7 @@ fun OnboardingScreen(
         }
     }
 }
-@Preview
+
 @Composable
 private fun Greetings(
     modifier: Modifier = Modifier,

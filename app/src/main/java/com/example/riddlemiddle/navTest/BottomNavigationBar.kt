@@ -55,7 +55,7 @@ fun BottomNavigationBar() {
             modifier = Modifier.padding(paddingValues = paddingValues)) {
             composable(Screens.Home.route) {
                 HomeScreen(
-                    navController
+
                 )
             }
             composable(Screens.Search.route) {
