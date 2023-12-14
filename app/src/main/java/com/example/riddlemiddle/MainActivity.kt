@@ -133,23 +133,18 @@ data class BottomNavigationItem(
                 route = Screens.Start.route
             ),
             BottomNavigationItem(
-                label = "RiddleAnswer",
-                icon = Icons.Filled.Search,
-                route = Screens.RiddleAnswer.route
-            ),
-            BottomNavigationItem(
-                label = "ActiveRiddle",
+                label = "Profile",
                 icon = Icons.Filled.AccountCircle,
-                route = Screens.Active.route
+                route = Screens.Settings.route
             ),
             BottomNavigationItem(
                 label = "RiddleList",
-                icon = Icons.Filled.AccountCircle,
+                icon = Icons.Filled.Search,
                 route = Screens.RiddleList.route
             ),
             BottomNavigationItem(
                 label = "JokeList",
-                icon = Icons.Filled.AccountCircle,
+                icon = Icons.Filled.Search,
                 route = Screens.JokeList.route
             ),
         )
