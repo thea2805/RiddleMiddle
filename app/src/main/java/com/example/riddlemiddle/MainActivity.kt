@@ -20,7 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.riddlemiddle.navTest.Screens
+import com.example.riddlemiddle.riddlemiddleapp.activeriddle.Screens
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.ActiveRiddle
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.RiddleAnswer
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.StartScreen
@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.riddlemiddle.riddlemiddleapp.activeriddle.JokeSelectionac
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.RiddleSelectionac
 import com.example.riddlemiddle.riddlemiddleapp.settings.Settings
 
@@ -85,6 +86,7 @@ class MainActivity : ComponentActivity() {
                         composable("RiddleAnswer" ) { RiddleAnswer(service, nav = navController)}
                         composable("ActiveRiddle" ) { ActiveRiddle(service, nav = navController) }
                         composable("RiddleList" ) { RiddleSelectionac(service, nav = navController) }
+                        composable("JokeList"   )   { JokeSelectionac(service, nav = navController) }
                         composable("Settings") { Settings(service = service, nav = navController)}
                     }
 
@@ -144,6 +146,11 @@ data class BottomNavigationItem(
                 label = "RiddleList",
                 icon = Icons.Filled.AccountCircle,
                 route = Screens.RiddleList.route
+            ),
+            BottomNavigationItem(
+                label = "JokeList",
+                icon = Icons.Filled.AccountCircle,
+                route = Screens.JokeList.route
             ),
         )
     }

@@ -52,6 +52,16 @@ fun JokeSelectionac(service: Firestore, nav: NavController) {
                     "you put them down and live the rest of your life." ),
                 Riddle("10 Trick", "how do catch a mouse?",
                     "you make sure it is not wireless" ),
+                Riddle("11 Trick", "What falls but never breaks, and what breaks but never falls? ",
+                    "Nightfall and daybreak" ),
+                Riddle("12 Trick", "What word begins with e, ends with e, and contains one letter, but is not the letter e? ",
+                    "Envelope" ),
+                Riddle("13 Trick", "You have a square house. All 4 walls face South. A bear steps in your front yard. What color is the bear?",
+                    "White. Noeth Pole. Polar bear" ),
+                Riddle("14 Trick", "A man is sitting in a chair. The chair is in a cabin. The cabin is in the woods. How did the man die?",
+                    "Airplane crash" ),
+                Riddle("15 Trick", "What starts and ends with T, and is filled with T?",
+                    "Teapot" ),
 
                 // Add more riddles as needed
             )
