@@ -1,9 +1,6 @@
 package com.example.riddlemiddle.apiService
 
 import android.util.Log
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import com.example.riddlemiddle.apiService.model.Riddle
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
