@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -76,6 +77,14 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
     val nav_version = "2.5.3"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+    val ktor_version = "2.3.7"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
 
 
 }
