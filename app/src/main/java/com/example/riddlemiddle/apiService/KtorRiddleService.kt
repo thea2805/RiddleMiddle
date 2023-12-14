@@ -1,17 +1,7 @@
 package com.example.riddlemiddle.apiService
 
-import android.net.http.HttpResponseCache.install
 import android.util.Log
 import com.example.riddlemiddle.apiService.model.Riddle
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.*
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.*
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.*
-import com.google.firebase.crashlytics.buildtools.reloc.org.*
-import com.google.firebase.crashlytics.buildtools.reloc.*
-import com.google.firebase.crashlytics.buildtools.*
-import com.google.firebase.crashlytics.*
-import com.google.firebase.*
 import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -96,7 +86,7 @@ class KtorRiddleService : RiddleService {
     override suspend fun getMany(url: String?): List<Riddle> {
         var apiUrl = ""
         if(url.isNullOrEmpty()){
-            apiUrl = baseUrlRiddle.plus("?limit=10")
+            apiUrl = baseUrlRiddle.plus("?limit=20")
         }
         else{
             apiUrl = url

@@ -1,5 +1,6 @@
 package com.example.riddlemiddle.riddlemiddleapp.activeriddle
 
+import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.*
 import androidx.navigation.NavController
 import com.example.riddlemiddle.R
+import com.example.riddlemiddle.apiService.KtorRiddleService
 import com.example.riddlemiddle.apiService.model.Riddle
 import com.example.riddlemiddle.riddlemiddleapp.firestore.service.Firestore
 import androidx.compose.ui.Modifier as Modifier1
@@ -27,17 +29,7 @@ import androidx.compose.ui.Modifier as Modifier1
 
 @Composable
 fun RiddleSelectionac(service: Firestore, nav: NavController) {
-    val riddles by remember {
-        mutableStateOf(
-            listOf(
-                Riddle("Title 1", "Question 1", "Answer 1"),
-                Riddle("Title 2", "Question 2", "Answer 2"),
-                // Add more riddles as needed
-            )
-        )
-    }
-
-    GetListOfCards(riddles = riddles)
+    GetListOfCards()
 }
 
 
@@ -51,13 +43,35 @@ fun MyNewApp() {
 @Composable
 private fun GetListOfCards(
     modifier: Modifier1 = Modifier1,
-    riddles: List<Riddle> = emptyList()
+    //riddles: List<Riddle> = emptyList()
 ) {
-    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
-        items(items = riddles) { riddle ->
-            GetCard(riddle = riddle)
+    val riddleService = KtorRiddleService()
+    val data = remember { mutableStateOf<List<Riddle>>(emptyList()) }
+    val isLoading = remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        isLoading.value = true
+        data.value = riddleService.getMany("")
+        Log.d("GETTING_DATA", data.value.toString())
+        isLoading.value = false
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            riddleService.close()
         }
     }
+
+    if(isLoading.value){
+        CircularProgressIndicator()
+    }
+    else{
+        LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+            items(data.value) { riddle ->
+                GetCard(riddle = riddle)
+            }
+        }
+    }
+
 }
 
 @Composable
