@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 // Function should take API input? This should be reusable, as both active riddle box + answer box
-fun RiddleBox(type: String, headline: String, text: String){
+fun RiddleBox(type: String, headline: String, text: String, ){
 // check if riddle/input exists when collecting from api, otherwise display the following
 
     Column(
