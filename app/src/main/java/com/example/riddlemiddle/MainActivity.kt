@@ -31,6 +31,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.RiddleSelectionac
+import com.example.riddlemiddle.riddlemiddleapp.settings.Settings
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -84,6 +85,7 @@ class MainActivity : ComponentActivity() {
                         composable("RiddleAnswer" ) { RiddleAnswer(service, nav = navController)}
                         composable("ActiveRiddle" ) { ActiveRiddle(service, nav = navController) }
                         composable("RiddleList" ) { RiddleSelectionac(service, nav = navController) }
+                        composable("Settings") { Settings(service = service, nav = navController)}
                     }
 
                 /*

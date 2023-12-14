@@ -11,6 +11,14 @@ class Firestore(private val api: FirebaseFirestore, private val auth: FirebaseAu
         const val TAG = "FIRE_STORE_SERVICE"
     }
 
+    fun getCurrentUser(): String{
+        return auth.currentUser?.email.toString()
+    }
+
+    suspend fun SignOut(){
+        auth.signOut()
+    }
+
     suspend fun signup(email: String, password: String){
         suspendCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
