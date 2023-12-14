@@ -36,10 +36,18 @@ class KtorRiddleService : RiddleService {
         }
     }
 
-    override suspend fun get(): List<Riddle> {
+    override suspend fun get(url: String?): List<Riddle> {
+        var apiUrl = ""
+        if(url != null){
+            url.also { apiUrl = it }
+        }
+        else{
+            apiUrl = baseUrlRiddle
+        }
+
         return try {
             client.get() {
-                url(baseUrlRiddle)
+                url(apiUrl)
                 header("X-Api-Key", ninjaApiKey)
             }.body()
         }
@@ -75,13 +83,28 @@ class KtorRiddleService : RiddleService {
     */
 
 
-    override suspend fun getby(title: String): List<Riddle> {
-        TODO("Not yet implemented")
+    override suspend fun getMany(url: String?): List<Riddle> {
+        var apiUrl = ""
+        if(url.isNullOrEmpty()){
+            apiUrl = baseUrlRiddle.plus("?limit=10")
+        }
+        else{
+            apiUrl = url
+        }
+
+        return try {
+            client.get() {
+                url(apiUrl)
+                header("X-Api-Key", ninjaApiKey)
+            }.body()
+        }
+        catch (e: Exception) {
+            Log.v("RIDDLE_SERVICE", e.toString())
+            emptyList()
+        }
+
     }
 
-    override suspend fun post(riddle: Riddle) {
-        TODO("Not yet implemented")
-    }
 
     fun close() {
         client.close()
