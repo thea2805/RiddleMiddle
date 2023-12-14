@@ -2,7 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="BottomNavigationBar">
+        <State />
+      </entry>
+      <entry key="MyApp">
+        <State />
+      </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="com.example.riddlemiddle.navTest.BottomNavigationBar">
         <State />
       </entry>
     </value>
