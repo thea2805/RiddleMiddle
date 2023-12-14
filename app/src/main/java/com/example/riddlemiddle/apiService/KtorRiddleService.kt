@@ -1,8 +1,18 @@
 package com.example.riddlemiddle.apiService
 
+import android.net.http.HttpResponseCache.install
 import android.util.Log
 import com.example.riddlemiddle.apiService.model.Riddle
-import io.ktor.client.HttpClient
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.*
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.*
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.*
+import com.google.firebase.crashlytics.buildtools.reloc.org.*
+import com.google.firebase.crashlytics.buildtools.reloc.*
+import com.google.firebase.crashlytics.buildtools.*
+import com.google.firebase.crashlytics.*
+import com.google.firebase.*
+import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.DefaultRequest
