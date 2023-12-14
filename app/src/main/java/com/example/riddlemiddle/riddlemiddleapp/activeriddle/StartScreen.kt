@@ -61,7 +61,7 @@ fun StartScreen(service: Firestore, nav: NavController){
             .align(Alignment.TopCenter)
             .padding(top = 430.dp),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-            onClick = { nav.navigate("ActiveRiddle") }) {
+            onClick = { nav.navigate("RiddleList") }) {
 
             Text(text = "Daily Riddle",
                 textAlign = TextAlign.Center,
