@@ -20,7 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.riddlemiddle.navTest.Screens
+import com.example.riddlemiddle.riddlemiddleapp.activeriddle.Screens
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.ActiveRiddle
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.RiddleAnswer
 import com.example.riddlemiddle.riddlemiddleapp.activeriddle.StartScreen
