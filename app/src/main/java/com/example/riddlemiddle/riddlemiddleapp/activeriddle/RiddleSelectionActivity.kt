@@ -29,17 +29,11 @@ fun RiddleSelectionac(service: Firestore, nav: NavController) {
                 GetListOfCards()
 }
 
-
-
-
 @Preview
 @Composable
 fun MyNewApp() {
     GetListOfCards()
 }
-
-
-
 
 @Composable
 private fun GetListOfCards(
