@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +34,7 @@ import com.example.riddlemiddle.apiService.KtorRiddleService
 import com.example.riddlemiddle.apiService.model.Riddle
 import com.example.riddlemiddle.riddlemiddleapp.firestore.service.Firestore
 import com.example.riddlemiddle.riddlemiddleapp.riddletools.RiddleBox
+import kotlinx.coroutines.launch
 
 @Composable
 fun ActiveRiddle(service: Firestore, nav: NavController) {
@@ -58,7 +60,7 @@ fun ActiveRiddle(service: Firestore, nav: NavController) {
         LazyColumn(modifier = Modifier
             .padding(vertical = 4.dp)) {
             items(data.value) { riddle ->
-                DailyRiddle(riddle = riddle)
+                DailyRiddle(riddle = riddle, service = service)
             }
         }
 
@@ -66,8 +68,9 @@ fun ActiveRiddle(service: Firestore, nav: NavController) {
 }
 
 @Composable
-fun DailyRiddle(riddle: Riddle){
+fun DailyRiddle(riddle: Riddle, service: Firestore){
     var expanded by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     Column(
         Modifier
@@ -94,20 +97,41 @@ fun DailyRiddle(riddle: Riddle){
 
         if(expanded){
             Text(text = riddle.answer,
-                Modifier.padding(horizontal = 7.dp),
+                Modifier.padding(horizontal = 7.dp, vertical = 15.dp),
                 color = Color.White)
+
+            Button(modifier = Modifier
+                .align(Alignment.CenterHorizontally),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+                onClick = {
+                    scope.launch {
+                        service.addCompletedRiddle(riddle.title, riddle.question, riddle.answer)
+                    }
+
+
+                }) {
+
+                Text(text = "Save Riddle?",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = Color.Black
+                )
+            }
+        }
+        else{
+            Button(modifier = Modifier
+                .align(Alignment.CenterHorizontally),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+                onClick = {expanded = !expanded}) {
+
+                Text(text = "Answer?",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = Color.Black
+                )
+            }
         }
 
-        Button(modifier = Modifier
-            .align(Alignment.CenterHorizontally),
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
-            onClick = {expanded = !expanded}) {
 
-            Text(text = "Answer?",
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.headlineMedium,
-                color = Color.Black
-            )
-        }
     }
 }
