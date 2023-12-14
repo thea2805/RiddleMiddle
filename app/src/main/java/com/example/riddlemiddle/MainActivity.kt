@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.riddlemiddle.riddlemiddleapp.activeriddle.RiddleSelectionac
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -82,6 +83,7 @@ class MainActivity : ComponentActivity() {
                         composable("StartScreen") { StartScreen(service, nav = navController)}
                         composable("RiddleAnswer" ) { RiddleAnswer(service, nav = navController)}
                         composable("ActiveRiddle" ) { ActiveRiddle(service, nav = navController) }
+                        composable("RiddleList" ) { RiddleSelectionac(service, nav = navController) }
                     }
 
                 /*
@@ -127,14 +129,19 @@ data class BottomNavigationItem(
                 route = Screens.Start.route
             ),
             BottomNavigationItem(
-                label = "Search",
+                label = "RiddleAnswer",
                 icon = Icons.Filled.Search,
                 route = Screens.RiddleAnswer.route
             ),
             BottomNavigationItem(
-                label = "Profile",
+                label = "ActiveRiddle",
                 icon = Icons.Filled.AccountCircle,
                 route = Screens.Active.route
+            ),
+            BottomNavigationItem(
+                label = "RiddleList",
+                icon = Icons.Filled.AccountCircle,
+                route = Screens.RiddleList.route
             ),
         )
     }
