@@ -5,5 +5,6 @@ sealed class Screens(val route : String) {
     object RiddleAnswer : Screens("RiddleAnswer")
     object Active : Screens("ActiveRiddle")
     object RiddleList : Screens("RiddleList")
+    object JokeList : Screens("JokeList")
 
 }
