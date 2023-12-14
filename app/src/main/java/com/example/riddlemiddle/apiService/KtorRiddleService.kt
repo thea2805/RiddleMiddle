@@ -86,7 +86,7 @@ class KtorRiddleService : RiddleService {
     override suspend fun getMany(url: String?): List<Riddle> {
         var apiUrl = ""
         if(url.isNullOrEmpty()){
-            apiUrl = baseUrlRiddle.plus("?limit=10")
+            apiUrl = baseUrlRiddle.plus("?limit=20")
         }
         else{
             apiUrl = url
