@@ -20,14 +20,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.*
 import androidx.navigation.NavController
 import com.example.riddlemiddle.R
+import com.example.riddlemiddle.apiService.model.Riddle
 import com.example.riddlemiddle.riddlemiddleapp.firestore.service.Firestore
 import androidx.compose.ui.Modifier as Modifier1
 
 
 @Composable
 fun RiddleSelectionac(service: Firestore, nav: NavController) {
-                GetListOfCards()
+    val riddles by remember {
+        mutableStateOf(
+            listOf(
+                Riddle("Title 1", "Question 1", "Answer 1"),
+                Riddle("Title 2", "Question 2", "Answer 2"),
+                // Add more riddles as needed
+            )
+        )
+    }
+
+    GetListOfCards(riddles = riddles)
 }
+
 
 @Preview
 @Composable
@@ -35,19 +47,87 @@ fun MyNewApp() {
     GetListOfCards()
 }
 
+
 @Composable
 private fun GetListOfCards(
     modifier: Modifier1 = Modifier1,
-    names: List<String> = List(1000) { "$it" }
+    riddles: List<Riddle> = emptyList()
 ) {
     LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
-        items(items = names) { name ->
-            GetCard(name = name)
+        items(items = riddles) { riddle ->
+            GetCard(riddle = riddle)
+        }
+    }
+}
+
+@Composable
+private fun GetCard(riddle: Riddle) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        ),
+        modifier = Modifier1.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        CardContent(riddle = riddle)
+    }
+}
+
+@Composable
+private fun CardContent(riddle: Riddle) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier1
+            .padding(12.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier1
+                .weight(1f)
+                .padding(12.dp)
+        ) {
+            Text(text = riddle.title)
+            Text(
+                text = riddle.question, style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+            if (expanded) {
+                Text(
+                    text = riddle.answer
+                )
+            }
+            Button(
+                onClick = { expanded = !expanded },
+                modifier = Modifier1.padding(top = 8.dp)
+            ) {
+                Text(text = "Show Answer")
+            }
+        }
+        IconButton(onClick = { expanded = !expanded }) {
+            Icon(
+                imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                contentDescription = if (expanded) {
+                    stringResource(R.string.show_less)
+                } else {
+                    stringResource(R.string.show_more)
+                }
+            )
         }
     }
 }
 
 
+
+
+
+
+/*
 @Composable
 private fun GetCard(name: String) {
     Card(
@@ -104,3 +184,4 @@ private fun CardContent(name: String) {
         }
     }
 }
+*/
