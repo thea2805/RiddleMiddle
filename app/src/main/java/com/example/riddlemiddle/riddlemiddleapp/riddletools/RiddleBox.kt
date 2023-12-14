@@ -6,9 +6,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -22,42 +29,6 @@ import androidx.compose.ui.unit.dp
 fun RiddleBox(type: String, headline: String, text: String, ){
 // check if riddle/input exists when collecting from api, otherwise display the following
 
-    Column(
-        Modifier
-            .padding(10.dp)
-            .width(400.dp)
-            .clip(shape = RoundedCornerShape(5.dp))
-            .background(Color(0xFF1B3474))
-            ) {
-        Text(text = headline,
-            Modifier
-                .padding(10.dp)
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.tertiary)
-
-        if(type == "Riddle"){
-            Text(text = "Can you solve the riddle?",
-                Modifier.padding(horizontal = 7.dp),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.tertiary)
-            Text(text = text,
-                Modifier.padding(horizontal = 7.dp),
-                color = Color.White)
-        }
-        else {
-            Text(text = "Explanation: ",
-                Modifier.padding(horizontal = 7.dp),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.tertiary)
-            Text(text = text,
-                Modifier.padding(horizontal = 7.dp),
-                color = Color.White)
-        }
-
-
-    }
 }
 
 @Preview

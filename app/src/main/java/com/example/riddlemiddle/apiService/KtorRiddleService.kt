@@ -47,7 +47,7 @@ class KtorRiddleService : RiddleService {
 
         return try {
             client.get() {
-                url(apiUrl)
+                url(baseUrlRiddle)
                 header("X-Api-Key", ninjaApiKey)
             }.body()
         }
